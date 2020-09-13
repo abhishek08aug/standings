@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: standings-service
+server:
+  port: 57116
