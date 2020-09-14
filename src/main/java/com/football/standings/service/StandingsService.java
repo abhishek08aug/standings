@@ -19,6 +19,9 @@ public class StandingsService implements InitializingBean {
     @Autowired
     private StandingsProvider standingsProvider;
 
+    /* ******************************************************
+     * Gives standings for a given country name
+     * ******************************************************/
     @GET
     @Path("country-name/{country-name}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -26,6 +29,9 @@ public class StandingsService implements InitializingBean {
         return standingsProvider.getStandingsByCountryName(countryName);
     }
 
+    /* ******************************************************
+     * Gives standings for a given league name
+     * ******************************************************/
     @GET
     @Path("league-name/{league-name}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -33,6 +39,9 @@ public class StandingsService implements InitializingBean {
         return standingsProvider.getStandingsByLeagueName(leagueName);
     }
 
+    /* ******************************************************
+     * Gives standings for a given team name
+     * ******************************************************/
     @GET
     @Path("team-name/{team-name}")
     @Produces(MediaType.APPLICATION_JSON)
