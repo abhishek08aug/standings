@@ -1,11 +1,13 @@
 package com.football.standings.provider.api;
 
-import com.football.standings.pojo.StandingsResponse;
+import com.football.standings.pojo.Standing;
+
+import java.util.List;
 
 public interface StandingsProvider {
-    StandingsResponse getStandingsByCountryName(String countryName);
+    List<Standing> getStandingsByCountryName(String countryName);
 
-    StandingsResponse getStandingsByLeagueName(String leagueName);
+    List<Standing> getStandingsByLeagueName(String leagueName);
 
-    StandingsResponse getStandingsByTeamName(String teamName);
+    List<Standing> getStandingsByTeamName(String teamName);
 }

@@ -26,7 +26,7 @@ public class StandingsService implements InitializingBean {
     @Path("country-name/{country-name}")
     @Produces(MediaType.APPLICATION_JSON)
     public StandingsResponse getStandingsByCountryName(@NonNull @PathParam("country-name") String countryName) {
-        return standingsProvider.getStandingsByCountryName(countryName);
+        return new StandingsResponse(standingsProvider.getStandingsByCountryName(countryName));
     }
 
     /* ******************************************************
@@ -36,7 +36,7 @@ public class StandingsService implements InitializingBean {
     @Path("league-name/{league-name}")
     @Produces(MediaType.APPLICATION_JSON)
     public StandingsResponse getStandingsByLeagueName(@NonNull @PathParam("league-name") String leagueName) {
-        return standingsProvider.getStandingsByLeagueName(leagueName);
+        return new StandingsResponse(standingsProvider.getStandingsByLeagueName(leagueName));
     }
 
     /* ******************************************************
@@ -46,7 +46,7 @@ public class StandingsService implements InitializingBean {
     @Path("team-name/{team-name}")
     @Produces(MediaType.APPLICATION_JSON)
     public StandingsResponse getStandingsByTeamName(@NonNull @PathParam("team-name") String teamName) {
-        return standingsProvider.getStandingsByTeamName(teamName);
+        return new StandingsResponse(standingsProvider.getStandingsByTeamName(teamName));
     }
 
     @Override

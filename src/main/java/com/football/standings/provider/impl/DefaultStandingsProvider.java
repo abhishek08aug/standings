@@ -3,7 +3,6 @@ package com.football.standings.provider.impl;
 import com.football.standings.pojo.Country;
 import com.football.standings.pojo.League;
 import com.football.standings.pojo.Standing;
-import com.football.standings.pojo.StandingsResponse;
 import com.football.standings.provider.api.DataProvider;
 import com.football.standings.provider.api.StandingsProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class DefaultStandingsProvider implements StandingsProvider {
     private DataProvider dataProvider;
 
     @Override
-    public StandingsResponse getStandingsByCountryName(String countryName) {
+    public List<Standing> getStandingsByCountryName(String countryName) {
         List<Country> countries = getCountries();
         List<Standing> standings = new ArrayList<>();
 
@@ -36,11 +35,11 @@ public class DefaultStandingsProvider implements StandingsProvider {
                 }
             }
         }
-        return new StandingsResponse(standings);
+        return standings;
     }
 
     @Override
-    public StandingsResponse getStandingsByLeagueName(String leagueName) {
+    public List<Standing> getStandingsByLeagueName(String leagueName) {
         List<Country> countries = getCountries();
         List<Standing> standings = new ArrayList<>();
 
@@ -56,11 +55,11 @@ public class DefaultStandingsProvider implements StandingsProvider {
                 }
             }
         }
-        return new StandingsResponse(standings);
+        return standings;
     }
 
     @Override
-    public StandingsResponse getStandingsByTeamName(String teamName) {
+    public List<Standing> getStandingsByTeamName(String teamName) {
         List<Country> countries = getCountries();
         List<Standing> standings = new ArrayList<>();
 
@@ -77,7 +76,7 @@ public class DefaultStandingsProvider implements StandingsProvider {
 
         standings = standings.stream().filter(standing -> teamName.equals(standing.getTeamName()))
                 .collect(Collectors.toList());
-        return new StandingsResponse(standings);
+        return standings;
     }
 
     private List<Country> getCountries() {
