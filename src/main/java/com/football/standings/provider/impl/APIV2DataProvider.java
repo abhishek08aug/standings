@@ -5,6 +5,9 @@ import com.football.standings.pojo.Country;
 import com.football.standings.pojo.League;
 import com.football.standings.pojo.Standing;
 import com.football.standings.provider.api.DataProvider;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.client.Client;
@@ -16,6 +19,8 @@ import java.util.List;
 
 @Component
 public class APIV2DataProvider implements DataProvider {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(APIV2DataProvider.class);
 
     private static final String API_KEY = "9bb66184e0c8145384fd2cc0f7b914ada57b4e8fd2e4d6d586adcc27c257a978";
     private static final String TARGET_API_V2 = "https://apiv2.apifootball.com";
@@ -49,8 +54,10 @@ public class APIV2DataProvider implements DataProvider {
                 countriesList.add(country);
             }
         } catch (Exception e) {
+            LOGGER.error("Failed to fetch countries from APIV2");
             throw new ServiceException("Failed to fetch countries from APIV2", e);
         }
+        LOGGER.info("Successfully fetched countries from APIV2");
         return countriesList;
     }
 
@@ -69,8 +76,10 @@ public class APIV2DataProvider implements DataProvider {
                 leaguesList.add(league);
             }
         } catch (Exception e) {
+            LOGGER.error("Failed to fetch leagues from APIV2 for country id: " + countryId);
             throw new ServiceException("Failed to fetch leagues from APIV2", e);
         }
+        LOGGER.info("Successfully fetched leagues from APIV2 for country id: " + countryId);
         return leaguesList;
     }
 
@@ -89,8 +98,10 @@ public class APIV2DataProvider implements DataProvider {
                 standingsList.add(standing);
             }
         } catch (Exception e) {
+            LOGGER.error("Failed to fetch standings from APIV2 for league id: " + leagueId);
             throw new ServiceException("Failed to fetch standings from APIV2", e);
         }
+        LOGGER.info("Successfully fetched standings from APIV2 for league id: " + leagueId);
         return standingsList;
     }
 
